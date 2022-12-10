@@ -32,7 +32,7 @@ IMAGE_PREFIX ?= $(strip )
 IMAGE_SUFFIX ?= $(strip )
 
 # This repo's root import path (under GOPATH).
-ROOT := github.com/alswl/excalidraw.alswl.com
+ROOT := github.com/alswl/excalidraw-collaboration
 
 # Git commit sha.
 COMMIT := $(strip $(shell git rev-parse --short HEAD 2>/dev/null))
@@ -54,6 +54,7 @@ help: ## Display this help
 patch: ## Patch endpoints
 	@echo "# you can edit excalidraw.env.production to change endpoints"
 	cp excalidraw.env.production excalidraw/.env.production
+	cp excalidraw.dockerignore excalidraw/..dockerignore
 
 .PHONY: images
 images: ## Build docker images
@@ -78,12 +79,13 @@ push-images: ## Push docker images
 	done
 
 .PHONY: bump-version
-currentVersion=$(shell head -n 1 ./VERSION)
+previousVersion=$(shell head -n 1 ./VERSION)
 bump-version: ## Bump images version for docker-compose
 	@for targe in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
 			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX):$(VERSION); \
-			gsed -i "s#$(image):$(currentVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
+			gsed -i "s#$(image):$(previousVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
 		done; \
 	done
+	echo $(VERSION) > ./VERSION
 	@echo "PLEASE using 'git commit -a' to commit image version changes"
