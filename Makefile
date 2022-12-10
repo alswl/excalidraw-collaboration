@@ -77,10 +77,18 @@ push-images: ## Push docker images
 		  docker push $$image; \
 	  done; \
 	done
+	
+
+.PHONY: ensure-git-clean
+ensure-git-clean: ## Ensure git is clean
+	@if [ -n "$$(git status --porcelain)" ]; then \
+		echo "# git is not clean, please commit or stash your changes first"; \
+		exit 1; \
+	fi
 
 .PHONY: bump-version
 previousVersion=$(shell head -n 1 ./VERSION)
-bump-version: ## Bump images version for docker-compose
+bump-version: ensure-git-clean ## Bump images version for docker-compose
 	@for targe in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
 			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX):$(VERSION); \

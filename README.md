@@ -14,6 +14,7 @@ git config submodule.excalidraw.ignore all # ignore submodule changes, we will p
 
 make patch
 make images
+git commit -a -m 'feat: new image'
 make bump-version
 docker-compose up
 ```
