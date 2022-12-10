@@ -10,6 +10,10 @@ Docs:
 Build:
 
 ```
+# ignore submodule changes, we will patch them
+git config submodule.excalidraw.ignore all
+
+make patch
 make images
 make generate-compose
 docker-compose up
