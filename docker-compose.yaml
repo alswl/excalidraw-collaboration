@@ -1,0 +1,22 @@
+# sample comes from https://github.com/docker/awesome-compose
+
+services:
+  frontend:
+    image: excalidraw:v0.1.0-d972cac-dirty
+    environment: # docs https://github.com/alswl/excalidraw-storage-backend#environement-variables
+      - PORT=8080
+    ports:
+      - 80:80
+
+  storage:
+    image: excalidraw-storage-backend:v0.1.0-d972cac-dirty
+    restart: always
+    environment: # docs https://github.com/alswl/excalidraw-storage-backend#environement-variables
+      - PORT=8081
+    ports:
+      - 8081:8081
+
+  room:
+    image: excalidraw-room:v0.1.0-d972cac-dirty
+    ports:
+      - 8082:8080
