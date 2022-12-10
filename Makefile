@@ -54,7 +54,7 @@ help: ## Display this help
 patch: ## Patch endpoints
 	@echo "# you can edit excalidraw.env.production to change endpoints"
 	cp excalidraw.env.production excalidraw/.env.production
-	cp excalidraw.dockerignore excalidraw/..dockerignore
+	cp excalidraw.dockerignore excalidraw/.dockerignore
 
 .PHONY: images
 images: ## Build docker images
