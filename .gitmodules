@@ -1,9 +1,9 @@
 [submodule "excalidraw-storage-backend"]
 	path = excalidraw-storage-backend
-	url = git@github.com:alswl/excalidraw-storage-backend.git
+	url = https://github.com/alswl/excalidraw-storage-backend.git
 [submodule "excalidraw-room"]
 	path = excalidraw-room
-	url = git@github.com:excalidraw/excalidraw-room.git
+	url = https://github.com/excalidraw/excalidraw-room.git
 [submodule "excalidraw"]
 	path = excalidraw
-	url = git@github.com:alswl/excalidraw.git
+	url = https://github.com/alswl/excalidraw.git
