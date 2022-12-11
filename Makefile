@@ -46,6 +46,10 @@ PATCH_VERSION = 0
 BUILD_VERSION = $(COMMIT)
 VERSION ?= v$(MAJOR_VERSION).$(MINOR_VERSION).$(PATCH_VERSION)-$(BUILD_VERSION)
 
+# Support gsed on OSX (installed via brew), falling back to sed. On Linux
+# systems gsed won't be installed, so will use sed as expected.
+SED ?= $(shell which gsed 2>/dev/null || which sed)
+
 .PHONY: help
 help: ## Display this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -92,7 +96,7 @@ bump-version: ensure-git-clean ## Bump images version for docker-compose
 	@for targe in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
 			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX):$(VERSION); \
-			gsed -i "s#$(image):$(previousVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
+			$(SED) -i "s#$(image):$(previousVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
 		done; \
 	done
 	echo $(VERSION) > ./VERSION
