@@ -93,7 +93,7 @@ ensure-git-clean: ## Ensure git is clean
 .PHONY: bump-version
 previousVersion=$(shell head -n 1 ./VERSION)
 bump-version: ensure-git-clean ## Bump images version for docker-compose
-	@for targe in $(TARGETS); do \
+	@for target in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
 			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX):$(VERSION); \
 			$(SED) -i "s#$(image):$(previousVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
