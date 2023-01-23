@@ -41,5 +41,5 @@ Browse it:
 About public network release:
 
 if you want to release your own excalidraw in public network,
-you should modify the `excalidraw.production.env` file,
+you should modify the `excalidraw.env.production` file,
 Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
