@@ -90,14 +90,17 @@ ensure-git-clean: ## Ensure git is clean
 		exit 1; \
 	fi
 
-.PHONY: bump-version
-previousVersion=$(shell head -n 1 ./VERSION)
-bump-version: ensure-git-clean ## Bump images version for docker-compose
+.PHONY: update-docker-compose-version
+update-docker-compose-version: ## Update images version for docker-compose
 	@for target in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
-			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX):$(VERSION); \
-			$(SED) -i "s#$(image):$(previousVersion)#$(image):$(VERSION)#g" docker-compose.yaml; \
+			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX); \
+			$(SED) -i -E "s#image: $${image}:[^ ]+#image: $${image}:$(VERSION)#g" docker-compose.yaml; \
 		done; \
 	done
+
+.PHONY: bump-version
+previousVersion=$(shell head -n 1 ./VERSION)
+bump-version: ensure-git-clean update-docker-compose-version ## Bump images version for docker-compose
 	echo $(VERSION) > ./VERSION
 	@echo "PLEASE using 'git commit -a' to commit image version changes"

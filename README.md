@@ -28,10 +28,23 @@ git clone --recursive git@github.com:alswl/excalidraw-collaboration.git
 cd excalidraw-collaboration
 git config submodule.excalidraw.ignore all # ignore submodule changes, we will patch them
 
-make patch images
-git commit -a -m 'feat: new image'
-make bump-version
-docker-compose up
+# $EDITOR excalidraw.env.production  # (optional) edit service endpoint
+
+make patch images # patch to configurations and build the container image
+make update-docker-compose-version # update images version for docker-compose
+docker-compose up # run the containers
+
+open "http://localhost" # open browser, and you can using the Team work functions
+```
+
+Bump version:
+
+```
+# make sure all changes are commited
+make images # build new image without dirty
+
+make bump-version # bump version if your configuration changes(the changes will build into 
+git commit -a -m 'feat: bump with my local config' # save your changes
 ```
 
 Browse it:
