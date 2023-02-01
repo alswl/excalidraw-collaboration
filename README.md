@@ -8,7 +8,10 @@ Snapshot:
 
 Demo:
 
-WIP
+[Live Demo](https://draw2.dmitrysamoylenko.in/)
+A live room sample here: [live room](https://draw2.dmitrysamoylenko.in/#room=f8671f3fdef3ada5128c,Dyn8aqg8RII9rzUVIl9i7w)
+
+Thanks a lot to @samoylenkodmitry.
 
 Related docs:
 
