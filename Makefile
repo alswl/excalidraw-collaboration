@@ -46,6 +46,8 @@ PATCH_VERSION = 0
 BUILD_VERSION = $(COMMIT)
 VERSION ?= v$(MAJOR_VERSION).$(MINOR_VERSION).$(PATCH_VERSION)-$(BUILD_VERSION)
 
+CHINA_MIRROR ?= false
+
 # Support gsed on OSX (installed via brew), falling back to sed. On Linux
 # systems gsed won't be installed, so will use sed as expected.
 SED ?= $(shell which gsed 2>/dev/null || which sed)
@@ -68,6 +70,7 @@ images: ## Build docker images
 			docker build \
 			-t $${image} \
 			--build-arg COMMIT=$(COMMIT) \
+			--build-arg CHINA_MIRROR=$(CHINA_MIRROR) \
 			--progress=plain \
 			 -f ./$${target}/Dockerfile $${target}; \
 		done; \
