@@ -2,12 +2,12 @@
 
 services:
   frontend:
-    image: excalidraw:v0.1.0-3331458
+    image: excalidraw:v0.1.0-94d3682
     ports:
       - 80:80
 
   storage:
-    image: excalidraw-storage-backend:v0.1.0-3331458
+    image: excalidraw-storage-backend:v0.1.0-94d3682
     restart: always
     environment: # docs https://github.com/alswl/excalidraw-storage-backend#environement-variables
       - PORT=8081
@@ -15,6 +15,6 @@ services:
       - 8081:8081
 
   room:
-    image: excalidraw-room:v0.1.0-3331458
+    image: excalidraw-room:v0.1.0-94d3682
     ports:
       - 8082:80
