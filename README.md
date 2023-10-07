@@ -39,6 +39,8 @@ open "http://localhost" # open browser, and you can using the Team work function
 
 Bump version:
 
+excalidraw-collaboration always follow the excalidraw version, so you can only bump the appendix version.
+
 ```
 # make sure all changes are commited
 make images # build new image without dirty

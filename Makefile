@@ -11,7 +11,7 @@
 #
 # The makefile is also responsible to populate project version information.
 
-#
+
 # Tweak the variables based on your project.
 #
 SHELL := /bin/bash
@@ -40,11 +40,9 @@ COMMIT := $(COMMIT)$(shell git diff-files --quiet || echo '-dirty')
 COMMIT := $(if $(COMMIT),$(COMMIT),"Unknown")
 
 # Current version of the project.
-MAJOR_VERSION = 0
-MINOR_VERSION = 1
-PATCH_VERSION = 0
+UPSTREAM_VERSION = $(shell cat UPSTREAM_VERSION | grep -E '^excalidraw:' | cut -d: -f2 | tr -d '[:space:]')
 BUILD_VERSION = $(COMMIT)
-VERSION ?= v$(MAJOR_VERSION).$(MINOR_VERSION).$(PATCH_VERSION)-$(BUILD_VERSION)
+VERSION ?= $(UPSTREAM_VERSION)-$(BUILD_VERSION)
 
 CHINA_MIRROR ?= false
 
@@ -98,12 +96,11 @@ update-docker-compose-version: ## Update images version for docker-compose
 	@for target in $(TARGETS); do \
   		for registry in $(REGISTRIES); do \
 			image=$${registry}$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX); \
-			$(SED) -i -E "s#image: $${image}:[^ ]+#image: $${image}:$(VERSION)#g" docker-compose.yaml; \
+			version=$$(cat UPSTREAM_VERSION | grep -E "^$${target}:" | cut -d: -f2 | tr -d '[:space:]')-$(COMMIT); \
+			$(SED) -i -E "s#image: $${image}:[^ ]+#image: $${image}:$${version}#g" docker-compose.yaml; \
 		done; \
 	done
 
 .PHONY: bump-version
-previousVersion=$(shell head -n 1 ./VERSION)
 bump-version: ensure-git-clean update-docker-compose-version ## Bump images version for docker-compose
-	echo $(VERSION) > ./VERSION
 	@echo "PLEASE using 'git commit -a' to commit image version changes"
