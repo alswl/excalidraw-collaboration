@@ -8,15 +8,16 @@ services:
       - PORT=8081
       - REACT_APP_BACKEND_V2_GET_URL=https://test.com/api/v2/
       - REACT_APP_BACKEND_V2_POST_URL=https://test.com/api/v2/post/
+      - REACT_APP_WS_SERVER_URL=http://127.0.0.1:8082
+      - REACT_APP_FIREBASE_CONFIG={}
+      # alswl'fork env
       - REACT_APP_HTTP_STORAGE_BACKEND_URL=http://127.0.0.1:8081/api/v2
       - REACT_APP_STORAGE_BACKEND=http
-      - REACT_APP_WS_SERVER_URL=http://127.0.0.1:8082
-      - REACT_APP_FIREBASE_CONFIG='{}'
     ports:
       - 80:80
 
   storage:
-    image: excalidraw-storage-backend:v0.1.0-94d3682
+    image: excalidraw-storage-backend:v2022.08.14
     restart: always
     environment: # docs https://github.com/alswl/excalidraw-storage-backend#environement-variables
       - PORT=8081
