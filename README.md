@@ -19,34 +19,17 @@ Related docs:
 - [私有化在线协同画图平台 Excalidraw | Log4D]( https://blog.alswl.com/2022/10/self-hosted-excalidraw/ )
 
 
-## Build and Run
+## Deploy
 
-Clone, patch, and build:
+Clone, and run:
 
 ```
-git clone --recursive git@github.com:alswl/excalidraw-collaboration.git
+git clone git@github.com:alswl/excalidraw-collaboration.git
 cd excalidraw-collaboration
-git config submodule.excalidraw.ignore all # ignore submodule changes, we will patch them
 
-# $EDITOR excalidraw.env.production  # (optional) edit service endpoint
-
-make patch images # patch to configurations and build the container image
-make update-docker-compose-version # update images version for docker-compose
 docker-compose up # run the containers
 
 open "http://localhost" # open browser, and you can using the Team work functions
-```
-
-Bump version:
-
-excalidraw-collaboration always follow the excalidraw version, so you can only bump the appendix version.
-
-```
-# make sure all changes are commited
-make images # build new image without dirty
-
-make bump-version # bump version if your configuration changes(the changes will build into 
-git commit -a -m 'feat: bump with my local config' # save your changes
 ```
 
 Browse it:
@@ -59,5 +42,5 @@ Browse it:
 About public network release:
 
 if you want to release your own excalidraw in public network,
-you should modify the `excalidraw.env.production` file,
+you should modify the `docker-compose.yaml` file,
 Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
