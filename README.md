@@ -19,34 +19,17 @@ Related docs:
 - [私有化在线协同画图平台 Excalidraw | Log4D]( https://blog.alswl.com/2022/10/self-hosted-excalidraw/ )
 
 
-## Build and Run
+## Deploy
 
-Clone, patch, and build:
+Clone, and run:
 
 ```
-git clone --recursive git@github.com:alswl/excalidraw-collaboration.git
+git clone git@github.com:alswl/excalidraw-collaboration.git
 cd excalidraw-collaboration
-git config submodule.excalidraw.ignore all # ignore submodule changes, we will patch them
 
-# $EDITOR excalidraw.env.production  # (optional) edit service endpoint
-
-make patch images # patch to configurations and build the container image
-make update-docker-compose-version # update images version for docker-compose
 docker-compose up # run the containers
 
-open "http://localhost" # open browser, and you can using the Team work functions
-```
-
-Bump version:
-
-excalidraw-collaboration always follow the excalidraw version, so you can only bump the appendix version.
-
-```
-# make sure all changes are commited
-make images # build new image without dirty
-
-make bump-version # bump version if your configuration changes(the changes will build into 
-git commit -a -m 'feat: bump with my local config' # save your changes
+open "http://localhost" # open browser, and you can using the collbration functions
 ```
 
 Browse it:
@@ -59,5 +42,31 @@ Browse it:
 About public network release:
 
 if you want to release your own excalidraw in public network,
-you should modify the `excalidraw.env.production` file,
+you should modify the `docker-compose.yaml` file,
 Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
+
+## Q & A
+
+### How to deploy on the cloud(aws etc)
+
+The `docker-compose.yaml` file is for local deploy, if you want to deploy on the cloud,
+you should prepare 2 Load Balancer(with HTTPS cert), one for websocket server, one for storage server.
+
+The `REACT_APP_HTTP_STORAGE_BACKEND_URL` is for the Load Balancer URL(HTTPS) for storage,
+and the `REACT_APP_WS_SERVER_URL` is for the Load Balancer URL(HTTPS) for websocket.
+
+Here is a conversation about how to deploy on the aws: https://github.com/alswl/excalidraw-collaboration/issues/22
+
+### generateKey problem
+
+Error message:
+
+```
+TypeError: Cannot read properties of undefined (reading 'generateKey')
+```
+
+Why: The excalidraw is using crypto module of Javascript, the HTTPS is required.
+
+How to solve: use HTTPS to access the page, or use http://localhost instead.
+
+
