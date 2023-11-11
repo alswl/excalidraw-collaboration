@@ -29,7 +29,7 @@ cd excalidraw-collaboration
 
 docker-compose up # run the containers
 
-open "http://localhost" # open browser, and you can using the Team work functions
+open "http://localhost" # open browser, and you can using the collbration functions
 ```
 
 Browse it:
@@ -44,3 +44,29 @@ About public network release:
 if you want to release your own excalidraw in public network,
 you should modify the `docker-compose.yaml` file,
 Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
+
+## Q & A
+
+### How to deploy on the cloud(aws etc)
+
+The `docker-compose.yaml` file is for local deploy, if you want to deploy on the cloud,
+you should prepare 2 Load Balancer(with HTTPS cert), one for websocket server, one for storage server.
+
+The `REACT_APP_HTTP_STORAGE_BACKEND_URL` is for the Load Balancer URL(HTTPS) for storage,
+and the `REACT_APP_WS_SERVER_URL` is for the Load Balancer URL(HTTPS) for websocket.
+
+Here is a conversation about how to deploy on the aws: https://github.com/alswl/excalidraw-collaboration/issues/22
+
+### generateKey problem
+
+Error message:
+
+```
+TypeError: Cannot read properties of undefined (reading 'generateKey')
+```
+
+Why: The excalidraw is using crypto module of Javascript, the HTTPS is required.
+
+How to solve: use HTTPS to access the page, or use http://localhost instead.
+
+
