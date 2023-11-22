@@ -16,8 +16,7 @@ Thanks a lot to @samoylenkodmitry.
 Related docs:
 
 - [Self hosted online collaborative drawing platform Excalidraw | Log4D](https://en.blog.alswl.com/2022/10/self-hosted-excalidraw/)
-- [私有化在线协同画图平台 Excalidraw | Log4D]( https://blog.alswl.com/2022/10/self-hosted-excalidraw/ )
-
+- [私有化在线协同画图平台 Excalidraw | Log4D](https://blog.alswl.com/2022/10/self-hosted-excalidraw/)
 
 ## Deploy
 
@@ -38,12 +37,11 @@ Browse it:
 - Click the `Live Collaboration` button, and you will see the collaboration page
 - Now you can share the collaboration page with your friends, and you can draw together.
 
-
 About public network release:
 
 if you want to release your own excalidraw in public network,
 you should modify the `docker-compose.yaml` file,
-Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
+Replace the `VITE_APP_HTTP_STORAGE_BACKEND_URL` and `VITE_APP_WS_SERVER_URL` with your own domain.
 
 ## Roadmap
 
@@ -59,6 +57,11 @@ Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` w
 - [x] online demo
 - [ ] one click to deploy somewhere
 
+## Upgrade Guide
+
+- v0.15.0 -> v0.16.1
+  - replace `REACT_APP_` env with `VITE_APP_`
+
 ## Q & A
 
 ### How to deploy on the cloud(aws etc)
@@ -66,8 +69,8 @@ Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` w
 The `docker-compose.yaml` file is for local deploy, if you want to deploy on the cloud,
 you should prepare 2 Load Balancer(with HTTPS cert), one for websocket server, one for storage server.
 
-The `REACT_APP_HTTP_STORAGE_BACKEND_URL` is for the Load Balancer URL(HTTPS) for storage,
-and the `REACT_APP_WS_SERVER_URL` is for the Load Balancer URL(HTTPS) for websocket.
+The `VITE_APP_HTTP_STORAGE_BACKEND_URL` is for the Load Balancer URL(HTTPS) for storage,
+and the `VITE_APP_WS_SERVER_URL` is for the Load Balancer URL(HTTPS) for websocket.
 
 Here is a conversation about how to deploy on the aws: https://github.com/alswl/excalidraw-collaboration/issues/22
 
@@ -82,5 +85,3 @@ TypeError: Cannot read properties of undefined (reading 'generateKey')
 Why: The excalidraw is using crypto module of Javascript, the HTTPS is required.
 
 How to solve: use HTTPS to access the page, or use http://localhost instead.
-
-
