@@ -45,6 +45,18 @@ if you want to release your own excalidraw in public network,
 you should modify the `docker-compose.yaml` file,
 Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` with your own domain.
 
+## Roadmap
+
+- [x] collaboration feature works
+- [x] No pre-build image, dynamic env
+- [x] Upload Docker Hub image
+- [ ] S3 storage support
+- [ ] SSO support
+- [ ] HTTPS Demo and docs
+- [ ] Helm support
+- [x] Online demo
+- [ ] One click to deploy somewhere
+
 ## Q & A
 
 ### How to deploy on the cloud(aws etc)
