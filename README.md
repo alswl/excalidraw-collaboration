@@ -47,15 +47,17 @@ Replace the `REACT_APP_HTTP_STORAGE_BACKEND_URL` and `REACT_APP_WS_SERVER_URL` w
 
 ## Roadmap
 
+- [x] self-host
 - [x] collaboration feature works
-- [x] No pre-build image, dynamic env
-- [x] Upload Docker Hub image
+- [x] docker-compose support
+- [x] no pre-build image, dynamic env
+- [x] upload Docker Hub image
 - [ ] S3 storage support
 - [ ] SSO support
 - [ ] HTTPS Demo and docs
 - [ ] Helm support
-- [x] Online demo
-- [ ] One click to deploy somewhere
+- [x] online demo
+- [ ] one click to deploy somewhere
 
 ## Q & A
 
