@@ -2,9 +2,8 @@
 
 services:
   frontend:
-    image: alswl/excalidraw:v0.17.0-fork-b1
+    image: alswl/excalidraw:v0.17.0-fork-b2
     environment:
-      - PORT=8081
       - VITE_APP_BACKEND_V2_GET_URL=https://test.com/api/v2/
       - VITE_APP_BACKEND_V2_POST_URL=https://test.com/api/v2/post/
       - VITE_APP_WS_SERVER_URL=http://127.0.0.1:8082
