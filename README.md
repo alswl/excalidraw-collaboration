@@ -2,6 +2,9 @@
 
 One click to init an excalidraw with collaboration.
 
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/PjQnHs?referralCode=HM_ZCO)
+
+
 Snapshot:
 
 ![snapshot](./_assets/snapshot.png)
