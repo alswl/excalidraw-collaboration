@@ -1,20 +1,16 @@
 # excalidraw-collaboration
 
-One click to init an excalidraw with collaboration.
+Demo:
+
+[demo](https://excalidraw-production-4d27.up.railway.app/) on [Railway](https://railway.app?referralCode=HM_ZCO)
+
+One click to deploy your excalidraw with collaboration.
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/PjQnHs?referralCode=HM_ZCO)
-
 
 Snapshot:
 
 ![snapshot](./_assets/snapshot.png)
-
-Demo:
-
-[Live Demo](https://draw2.dmitrysamoylenko.in/)
-A live room sample here: [live room](https://draw2.dmitrysamoylenko.in/#room=f8671f3fdef3ada5128c,Dyn8aqg8RII9rzUVIl9i7w)
-
-Thanks a lot to @samoylenkodmitry.
 
 Related docs:
 
@@ -55,10 +51,11 @@ Replace the `VITE_APP_HTTP_STORAGE_BACKEND_URL` and `VITE_APP_WS_SERVER_URL` wit
 - [x] upload Docker Hub image
 - [ ] S3 storage support
 - [ ] SSO support
-- [ ] HTTPS Demo and docs
+- [x] HTTPS Demo and
+- [x] HTTPS docs
 - [ ] Helm support
 - [x] online demo
-- [ ] one click to deploy somewhere
+- [x] one click to deploy Railway
 
 ## Upgrade Guide
 
