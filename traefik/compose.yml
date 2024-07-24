@@ -1,0 +1,89 @@
+services:
+  app:
+    image: alswl/excalidraw:v0.17.3-fork-b1
+    restart: unless-stopped
+    environment:
+      - VITE_APP_BACKEND_V2_GET_URL=https://${STORAGE_BACKEND_HOST}/api/v2/scenes/
+      - VITE_APP_BACKEND_V2_POST_URL=https://${STORAGE_BACKEND_HOST}/api/v2/scenes/
+      - VITE_APP_WS_SERVER_URL=https://${ROOM_HOST}/
+      - VITE_APP_FIREBASE_CONFIG={}
+      - VITE_APP_HTTP_STORAGE_BACKEND_URL=https://${STORAGE_BACKEND_HOST}/api/v2
+      - VITE_APP_STORAGE_BACKEND=http
+      - VITE_APP_DISABLE_TRACKING=true
+      - PUBLIC_URL=https://${APP_HOST}
+    networks:
+      - ${TRAEFIK_NETWORK_NAME}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${TRAEFIK_NETWORK_NAME}"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-app-${TRAEFIK_ENTRYPOINT}.rule=Host(`${APP_HOST}`)"
+      - "traefik.http.services.${TRAEFIK_LABEL_ID}-app-${TRAEFIK_ENTRYPOINT}.loadbalancer.server.port=80"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-app-${TRAEFIK_ENTRYPOINT}.entrypoints=${TRAEFIK_ENTRYPOINT}"
+
+  storage:
+    image: alswl/excalidraw-storage-backend:v2023.11.11
+    restart: unless-stopped
+    environment:
+      - STORAGE_URI=mongodb://${DB_USER}:${DB_PASS}@mongodb:27017
+    networks:
+      - ${TRAEFIK_NETWORK_NAME}
+      - draw-internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${TRAEFIK_NETWORK_NAME}"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-storage-${TRAEFIK_ENTRYPOINT}.rule=Host(`${STORAGE_BACKEND_HOST}`)"
+      - "traefik.http.services.${TRAEFIK_LABEL_ID}-storage-${TRAEFIK_ENTRYPOINT}.loadbalancer.server.port=8080"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-storage-${TRAEFIK_ENTRYPOINT}.entrypoints=${TRAEFIK_ENTRYPOINT}"
+
+  room:
+    image: excalidraw/excalidraw-room:sha-49bf529
+    restart: unless-stopped
+    networks:
+      - ${TRAEFIK_NETWORK_NAME}      
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${TRAEFIK_NETWORK_NAME}"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-room-${TRAEFIK_ENTRYPOINT}.rule=Host(`${ROOM_HOST}`)"
+      - "traefik.http.services.${TRAEFIK_LABEL_ID}-room-${TRAEFIK_ENTRYPOINT}.loadbalancer.server.port=80"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-room-${TRAEFIK_ENTRYPOINT}.entrypoints=${TRAEFIK_ENTRYPOINT}"
+
+  mongodb:
+    image: mongo:7.0.5-jammy
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+    volumes:
+      - ${DB_VOLUME_PATH}:/data/db
+    networks:
+      - draw-internal
+    labels:
+      - "traefik.enable=false"
+
+  mongoexpress:
+    image: mongo-express:latest
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://${DB_USER}:${DB_PASS}@mongodb:27017
+      - ME_CONFIG_BASICAUTH=true
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_USER}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASS}
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    networks:
+      - ${TRAEFIK_NETWORK_NAME}
+      - draw-internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${TRAEFIK_NETWORK_NAME}"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-db-${TRAEFIK_ENTRYPOINT}.rule=Host(`${MONGOEXPRESS_HOST}`)"
+      - "traefik.http.services.${TRAEFIK_LABEL_ID}-db-${TRAEFIK_ENTRYPOINT}.loadbalancer.server.port=8081"
+      - "traefik.http.routers.${TRAEFIK_LABEL_ID}-db-${TRAEFIK_ENTRYPOINT}.entrypoints=${TRAEFIK_ENTRYPOINT}"
+
+networks:
+  proxy:
+    name: ${TRAEFIK_NETWORK_NAME}
+    external: true
+  draw-internal:
+    name: draw-internal
+    external: false
