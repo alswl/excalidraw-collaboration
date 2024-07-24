@@ -1,0 +1,39 @@
+services:
+  app:
+    image: alswl/excalidraw:v0.17.3-fork-b1
+    restart: unless-stopped
+    environment:
+      - VITE_APP_BACKEND_V2_GET_URL=https://${STORAGE_BACKEND_HOST}/api/v2/scenes/
+      - VITE_APP_BACKEND_V2_POST_URL=https://${STORAGE_BACKEND_HOST}/api/v2/scenes/
+      - VITE_APP_WS_SERVER_URL=https://${ROOM_HOST}/
+      - VITE_APP_FIREBASE_CONFIG={}
+      - VITE_APP_HTTP_STORAGE_BACKEND_URL=https://${STORAGE_BACKEND_HOST}/api/v2
+      - VITE_APP_STORAGE_BACKEND=http
+      - VITE_APP_DISABLE_TRACKING=true
+      - PUBLIC_URL=https://${APP_HOST}
+    ports:
+    - "9013:80"
+
+  storage:
+    image: alswl/excalidraw-storage-backend:v2023.11.11
+    restart: unless-stopped
+    environment:
+      - STORAGE_URI=mongodb://${DB_USER}:${DB_PASS}@mongodb:27017
+    ports:
+      - "9014:8080"
+
+  room:
+    image: excalidraw/excalidraw-room:sha-49bf529
+    restart: unless-stopped
+    ports:
+      - "9015:80"
+
+  mongodb:
+    image: mongo:7.0.5-jammy
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+    volumes:
+      - ${DB_VOLUME_PATH}:/data/db
+    user: "1000"
