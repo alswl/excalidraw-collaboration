@@ -17,13 +17,13 @@ Related docs:
 - [Self hosted online collaborative drawing platform Excalidraw | Log4D](https://en.blog.alswl.com/2022/10/self-hosted-excalidraw/)
 - [私有化在线协同画图平台 Excalidraw | Log4D](https://blog.alswl.com/2022/10/self-hosted-excalidraw/)
 
-## Deploy
+## Deploy (Basic)
 
 Clone, and run:
 
 ```
 git clone git@github.com:alswl/excalidraw-collaboration.git
-cd excalidraw-collaboration
+cd excalidraw-collaboration/basic
 
 docker-compose up # run the containers
 
@@ -41,6 +41,15 @@ About public network release:
 if you want to release your own excalidraw in public network,
 you should modify the `docker-compose.yaml` file,
 Replace the `VITE_APP_HTTP_STORAGE_BACKEND_URL` and `VITE_APP_WS_SERVER_URL` with your own domain.
+
+## Advanced mode
+
+### advanced-nginx
+
+Features:
+
+- Setup with one domain, and use nginx to proxy the requests to the backend services
+- HTTPS support
 
 ## Roadmap
 
@@ -85,3 +94,9 @@ TypeError: Cannot read properties of undefined (reading 'generateKey')
 Why: The excalidraw is using crypto module of Javascript, the HTTPS is required.
 
 How to solve: use HTTPS to access the page, or use http://localhost instead.
+
+## Contributors
+
+<a href="https://github.com/alswl/excalidraw-collaboration/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alswl/excalidraw-collaboration" />
+</a>
