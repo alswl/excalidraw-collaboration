@@ -51,6 +51,13 @@ Features:
 - Setup with one domain, and use nginx to proxy the requests to the backend services
 - HTTPS support
 
+### traefik (not part of this repo)
+
+A configurable docker-compose example for a traefik setup can be found here:
+
+<https://github.com/Someone0nEarth/excalidraw-self-hosted>
+
+
 ## Roadmap
 
 - [x] self-host
