@@ -6,8 +6,10 @@ Demo:
 (Please using the referral code help me get Railway credits to running the demo.)
 
 If the demo is down (sometime no free plan credits), you can one click to deploy your excalidraw with collaboration.
-
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/PjQnHs?referralCode=HM_ZCO&utm_medium=integration&utm_source=template&utm_campaign=generic)
+
+[demo](https://excalidraw.zeabur.app/) on [Zeabur](https://zeabur.com/referral?referralCode=alswl)
+(Please using the referral code help me get Zeabur credits to running the demo.)
 
 Snapshot:
 
