@@ -2,11 +2,12 @@
 
 Demo:
 
-[demo](https://excalidraw-production-4d27.up.railway.app/) on [Railway](https://railway.app?referralCode=HM_ZCO)
+[demo](https://excalidraw-production-1dbf.up.railway.app) on [Railway](https://railway.app?referralCode=HM_ZCO)
+(Please using the referral code help me get Railway credits to running the demo.)
 
-One click to deploy your excalidraw with collaboration.
+If the demo is down (sometime no free plan credits), you can one click to deploy your excalidraw with collaboration.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/PjQnHs?referralCode=HM_ZCO)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/PjQnHs?referralCode=HM_ZCO&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 Snapshot:
 
