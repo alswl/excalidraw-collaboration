@@ -1,6 +1,6 @@
 services:
   app:
-    image: alswl/excalidraw:v0.18.0-fork-b2
+    image: alswl/excalidraw:v0.18.0-fork-b3
     restart: unless-stopped
     environment:
       - VITE_APP_BACKEND_V2_GET_URL=https://${STORAGE_BACKEND_HOST}/api/v2/scenes/
