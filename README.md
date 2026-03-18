@@ -6,23 +6,24 @@ Demo:
 (Please using the referral code help me get Railway credits to running the demo.)
 
 If the demo is down (sometime no free plan credits), you can one click to deploy your excalidraw with collaboration.
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/PjQnHs?referralCode=HM_ZCO&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[⁠![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/PjQnHs?referralCode=HM_ZCO&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 [demo](https://excalidraw.zeabur.app/) on [Zeabur](https://zeabur.com/referral?referralCode=alswl)
 (Please using the referral code help me get Zeabur credits to running the demo.)
 
 Snapshot:
 
-![snapshot](./_assets/snapshot.png)
+⁠![snapshot](./_assets/snapshot.png)
 
 Related docs:
 
 - [Self hosted online collaborative drawing platform Excalidraw | Log4D](https://en.blog.alswl.com/2022/10/self-hosted-excalidraw/)
 - [私有化在线协同画图平台 Excalidraw | Log4D](https://blog.alswl.com/2022/10/self-hosted-excalidraw/)
 
-## Deploy (Basic)
+## Deploy (Bahjc)
 
 Clone, and run:
+
 
 ```
 git clone git@github.com:alswl/excalidraw-collaboration.git
@@ -35,7 +36,7 @@ open "http://localhost" # open browser, and you can using the collbration functi
 
 Browse it:
 
-- open http://127.0.0.1/ ,and you will see the excalidraw page
+- open [http://127.0.0.1/](http://127.0.0.1/) ,and you will see the excalidraw page
 - Click the `Live Collaboration` button, and you will see the collaboration page
 - Now you can share the collaboration page with your friends, and you can draw together.
 
@@ -58,8 +59,7 @@ Features:
 
 A configurable docker-compose example for a traefik setup can be found here:
 
-<https://github.com/Someone0nEarth/excalidraw-self-hosted>
-
+[https://github.com/Someone0nEarth/excalidraw-self-hosted](https://github.com/Someone0nEarth/excalidraw-self-hosted)
 
 ## Roadmap
 
@@ -79,7 +79,7 @@ A configurable docker-compose example for a traefik setup can be found here:
 ## Upgrade Guide
 
 - v0.15.0 -> v0.16.1
-  - replace `REACT_APP_` env with `VITE_APP_`
+   - replace `REACT_APP_` env with `VITE_APP_`
 
 ## Q & A
 
@@ -91,11 +91,12 @@ you should prepare 2 Load Balancer(with HTTPS cert), one for websocket server, o
 The `VITE_APP_HTTP_STORAGE_BACKEND_URL` is for the Load Balancer URL(HTTPS) for storage,
 and the `VITE_APP_WS_SERVER_URL` is for the Load Balancer URL(HTTPS) for websocket.
 
-Here is a conversation about how to deploy on the aws: https://github.com/alswl/excalidraw-collaboration/issues/22
+Here is a conversation about how to deploy on the aws: [https://github.com/alswl/excalidraw-collaboration/issues/22](https://github.com/alswl/excalidraw-collaboration/issues/22)
 
 ### generateKey problem
 
 Error message:
+
 
 ```
 TypeError: Cannot read properties of undefined (reading 'generateKey')
@@ -103,10 +104,12 @@ TypeError: Cannot read properties of undefined (reading 'generateKey')
 
 Why: The excalidraw is using crypto module of Javascript, the HTTPS is required.
 
-How to solve: use HTTPS to access the page, or use http://localhost instead.
+How to solve: use HTTPS to access the page, or use [http://localhost](http://localhost) instead.
 
 ## Contributors
 
 <a href="https://github.com/alswl/excalidraw-collaboration/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=alswl/excalidraw-collaboration" />
 </a>
+
+&#8203;
