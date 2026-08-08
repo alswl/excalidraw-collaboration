@@ -3,19 +3,25 @@
 Self-hosted Excalidraw with live collaboration, scene storage, and a small set
 of Docker Compose deployment examples.
 
-## Status
+## Try it online
 
 - The [Railway demo](https://excalidraw-production-1dbf.up.railway.app) is live
   and has been verified with `alswl/excalidraw-room-go:v0.1.0`.
-- The collaboration service is the Go implementation in
-  [excalidraw-room-go](https://github.com/alswl/excalidraw-room-go).
-- The former Zeabur demo has been retired.
+
+If the demo is unavailable, deploy your own instance from the Railway template:
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/PjQnHs?referralCode=HM_ZCO&utm_medium=integration&utm_source=template&utm_campaign=generic)
+
+## Snapshot
+
+![Excalidraw collaboration snapshot](./_assets/snapshot.png)
 
 ## What is included
 
 - An Excalidraw frontend configured through runtime environment variables.
 - HTTP storage for scenes and files.
-- A Socket.IO room service for real-time collaboration.
+- A Socket.IO room service for real-time collaboration, powered by
+  [excalidraw-room-go](https://github.com/alswl/excalidraw-room-go).
 - A local Compose example and an HTTPS/Nginx production example.
 
 ```mermaid
@@ -86,6 +92,11 @@ The values used by each example are visible in its Compose file. Keep the
 room image pinned to a released version; the current examples use
 `alswl/excalidraw-room-go:v0.1.0`.
 
+### Traefik
+
+A configurable Traefik-based Docker Compose example is available in
+[Someone0nEarth/excalidraw-self-hosted](https://github.com/Someone0nEarth/excalidraw-self-hosted).
+
 ## Related projects
 
 - [excalidraw-room-go](https://github.com/alswl/excalidraw-room-go) — Go
@@ -102,6 +113,46 @@ Questions, bug reports, and deployment experiences are welcome in
 [GitHub Issues](https://github.com/alswl/excalidraw-collaboration/issues).
 For a code change, please open a pull request with a short description and
 the validation you ran.
+
+## FAQ
+
+### How do I deploy with separate public endpoints?
+
+If frontend traffic, WebSocket traffic, and storage traffic are exposed through
+separate load balancers, configure TLS for the WebSocket and storage endpoints.
+Set `VITE_APP_HTTP_STORAGE_BACKEND_URL` to the storage endpoint and
+`VITE_APP_WS_SERVER_URL` to the WebSocket endpoint.
+
+For an AWS-oriented deployment discussion, see
+[issue #22](https://github.com/alswl/excalidraw-collaboration/issues/22).
+
+### Why does collaboration fail with `generateKey` errors?
+
+```text
+TypeError: Cannot read properties of undefined (reading 'generateKey')
+```
+
+Excalidraw uses browser cryptography APIs for collaboration. Open the site over
+HTTPS, or use `http://localhost` for local development.
+
+## Upgrade guide
+
+### v0.15.0 → v0.16.1
+
+Replace `REACT_APP_` environment variables with `VITE_APP_` variables.
+
+## Roadmap
+
+- [x] Self-hosting
+- [x] Live collaboration
+- [x] Docker Compose support
+- [x] Dynamic frontend environment configuration
+- [x] Docker Hub images
+- [x] HTTPS demo and documentation
+- [x] Railway one-click deployment
+- [ ] S3 storage support
+- [ ] SSO support
+- [ ] Helm support
 
 ## Further reading
 
