@@ -1,5 +1,5 @@
-# sample comes from https://github.com/docker/awesome-compose
-
+# Deployment entry point for managed hosting platforms.
+# Keep this configuration aligned with basic/docker-compose.yaml.
 services:
   frontend:
     image: alswl/excalidraw:v0.18.1-fork-b2
@@ -8,8 +8,6 @@ services:
       - VITE_APP_BACKEND_V2_POST_URL=http://127.0.0.1:8081/api/v2/scenes/
       - VITE_APP_WS_SERVER_URL=http://127.0.0.1:8082
       - VITE_APP_FIREBASE_CONFIG={}
-      # alswl'fork env
-      # forked excalidraw can use env https://github.com/alswl/excalidraw/pull/5
       - VITE_APP_HTTP_STORAGE_BACKEND_URL=http://127.0.0.1:8081/api/v2
       - VITE_APP_STORAGE_BACKEND=http
     ports:
@@ -18,7 +16,7 @@ services:
   storage:
     image: alswl/excalidraw-storage-backend:v2023.11.11
     restart: always
-    environment: # docs https://github.com/alswl/excalidraw-storage-backend#environement-variables
+    environment:
       - PORT=8081
     ports:
       - 8081:8081

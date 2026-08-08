@@ -23,8 +23,10 @@ services:
       - "9014:8080"
 
   room:
-    image: excalidraw/excalidraw-room:sha-49bf529
+    image: alswl/excalidraw-room-go:latest
     restart: unless-stopped
+    environment:
+      - PORT=80
     ports:
       - "9015:80"
 
