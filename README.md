@@ -96,10 +96,6 @@ room image pinned to a released version; the current examples use
   Excalidraw fork used for the frontend image.
 - [excalidraw.alswl.com](https://github.com/alswl/excalidraw.alswl.com) —
   static Excalidraw site with Chinese font support.
-- [excalidraw-room-railway](https://github.com/alswl/excalidraw-room-railway)
-  and [excalidraw-storage-backend-railway](https://github.com/alswl/excalidraw-storage-backend-railway)
-  — Railway deployment repositories.
-
 ## Community and support
 
 Questions, bug reports, and deployment experiences are welcome in
