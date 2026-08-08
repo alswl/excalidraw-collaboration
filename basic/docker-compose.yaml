@@ -24,6 +24,8 @@ services:
       - 8081:8081
 
   room:
-    image: excalidraw/excalidraw-room:sha-49bf529
+    image: alswl/excalidraw-room-go:v0.1.0
+    environment:
+      - PORT=80
     ports:
       - 8082:80
