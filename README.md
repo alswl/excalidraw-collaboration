@@ -12,6 +12,11 @@ Snapshot:
 
 ⁠![snapshot](./_assets/snapshot.png)
 
+## Related projects
+
+- [excalidraw-room-go](https://github.com/alswl/excalidraw-room-go): Go implementation of the Excalidraw Socket.IO collaboration server.
+- [excalidraw.alswl.com](https://github.com/alswl/excalidraw.alswl.com): Static Excalidraw site deployed at [excalidraw.alswl.com](https://excalidraw.alswl.com).
+
 Related docs:
 
 - [Self hosted online collaborative drawing platform Excalidraw | Log4D](https://en.blog.alswl.com/2022/10/self-hosted-excalidraw/)
