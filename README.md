@@ -115,3 +115,9 @@ the validation you ran.
 ## License
 
 [MIT](LICENSE)
+
+## Contributors
+
+<a href="https://github.com/alswl/excalidraw-collaboration/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alswl/excalidraw-collaboration" alt="Contributors" />
+</a>
